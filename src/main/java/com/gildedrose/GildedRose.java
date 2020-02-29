@@ -51,19 +51,12 @@ class GildedRose {
     private void updatedBackstageRoseQuality(Item item) {
 
         if (item.quality < 50) {
-            if (item.sell_in < 11) {
-                item.quality = item.quality + 1;
-            }
-        }
-
-        if (item.quality < 50) {
-            if (item.sell_in < 6) {
-                item.quality = item.quality + 1;
-            }
+            if (item.sell_in < 6) item.quality = item.quality + 2;
+            else if (item.sell_in < 11) item.quality = item.quality + 1;
         }
 
         if (item.sell_in < 0) {
-            item.quality = item.quality - item.quality;
+            item.quality = 0;
         }
     }
 }
