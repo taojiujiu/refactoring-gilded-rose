@@ -1,61 +1,42 @@
 package com.gildedrose;
 
+import com.gildedrose.model.AgedRose;
+import com.gildedrose.model.BackstageRose;
+import com.gildedrose.model.Rose;
+import com.gildedrose.model.SulfurasRose;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 class GildedRose {
-    Rose[] roses;
+    List<Rose> roses;
 
     public GildedRose(Rose[] roses) {
-        this.roses = roses;
+        this.roses = Arrays.stream(roses)
+                .map(this :: createRose)
+                .collect(Collectors.toList());
     }
 
-    public void update_quality() {
-        for (Rose rose : roses) {
-            updatedSellByName(rose);
-            updatedQuality(rose);
-        }
+    public void updateQuality() {
+        roses.stream()
+                .filter(rose -> !(rose instanceof SulfurasRose))
+                .forEach(rose -> {
+                    rose.updateSellIn();
+                    rose.updateQuality();
+                });
     }
 
-    private void updatedSellByName(Rose rose) {
-        if (!rose.name.equals("Sulfuras, Hand of Ragnaros")) {
-            rose.sell_in = rose.sell_in - 1;
-        }
-    }
-
-    private void updatedQuality(Rose rose) {
+    private Rose createRose(Rose rose) {
         switch (rose.name) {
             case "Sulfuras, Hand of Ragnaros":
-                return;
+                return new SulfurasRose(rose.name, rose.sellIn, rose.quality);
             case "Aged Brie":
-                if (rose.sell_in < 0 && rose.quality < 50) {
-                    rose.quality = rose.quality + 1;
-                }
-                if (rose.quality < 50) {
-                    rose.quality = rose.quality + 1;
-                }
-                return;
+                return new AgedRose(rose.name, rose.sellIn, rose.quality);
             case "Backstage passes to a TAFKAL80ETC concert":
-                if (rose.quality < 50) {
-                    rose.quality = rose.quality + 1;
-                    updatedBackstageRoseQuality(rose);
-                }
-                return;
+                return new BackstageRose(rose.name, rose.sellIn, rose.quality);
             default:
-                if (rose.quality > 0) {
-                    rose.quality = rose.quality - 1;
-                    if (rose.sell_in < 0) {
-                        rose.quality = rose.quality - 1;
-                    }
-                }
-        }
-    }
-
-    private void updatedBackstageRoseQuality(Rose rose) {
-        if (rose.quality < 50) {
-            if (rose.sell_in < 6) rose.quality = rose.quality + 2;
-            else if (rose.sell_in < 11) rose.quality = rose.quality + 1;
-        }
-
-        if (rose.sell_in < 0) {
-            rose.quality = 0;
+                return new Rose(rose.name, rose.sellIn, rose.quality);
         }
     }
 }

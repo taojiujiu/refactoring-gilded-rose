@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.gildedrose.model.Rose;
+
 public class TexttestFixture {
     public static void main(String[] args) {
         System.out.println("OMGHAI!");
@@ -31,7 +33,7 @@ public class TexttestFixture {
                 System.out.println(rose);
             }
             System.out.println();
-            app.update_quality();
+            app.updateQuality();
         }
     }
 
