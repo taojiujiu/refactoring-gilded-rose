@@ -10,8 +10,7 @@ class GildedRose {
     public void update_quality() {
         for (Item item : items) {
             updatedSellByName(item);
-            updatedQualityByName(item);
-
+            updatedQuality(item);
         }
     }
 
@@ -21,7 +20,7 @@ class GildedRose {
         }
     }
 
-    private void updatedQualityByName(Item item) {
+    private void updatedQuality(Item item) {
         if (!item.name.equals("Aged Brie")
                 && !item.name.equals("Backstage passes to a TAFKAL80ETC concert")
         ) {
