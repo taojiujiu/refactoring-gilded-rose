@@ -49,14 +49,6 @@ class GildedRose {
                 updatedBackstageRoseQuality(item);
             }
         }
-
-        if (item.sell_in < 0) {
-            if (!item.name.equals("Aged Brie")) {
-                if (!item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                }
-            } else {
-            }
-        }
     }
 
     private void updatedBackstageRoseQuality(Item item) {
