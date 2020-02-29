@@ -11,9 +11,7 @@ class GildedRose {
         for (Item item : items) {
             updatedQualityByName(item);
 
-            if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                item.sell_in = item.sell_in - 1;
-            }
+            updatedSellByName(item);
 
             if (item.sell_in < 0) {
                 if (!item.name.equals("Aged Brie")) {
@@ -32,6 +30,12 @@ class GildedRose {
                     }
                 }
             }
+        }
+    }
+
+    private void updatedSellByName(Item item) {
+        if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
+            item.sell_in = item.sell_in - 1;
         }
     }
 
