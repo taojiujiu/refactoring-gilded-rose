@@ -9,10 +9,8 @@ class GildedRose {
 
     public void update_quality() {
         for (Item item : items) {
-            updatedQualityByName(item);
-
             updatedSellByName(item);
-
+            updatedQualityByName(item);
             updatedQualityBySell(item);
         }
     }
