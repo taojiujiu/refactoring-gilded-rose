@@ -39,7 +39,7 @@ class GildedRose {
             }
         } else {
             if (item.name.equals("Aged Brie")) {
-                if (item.quality < 50) {
+                if (item.sell_in < 0 && item.quality < 50) {
                     item.quality = item.quality + 1;
                 }
             }
