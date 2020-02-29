@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class Item {
+public class Rose {
 
     public String name;
 
@@ -8,7 +8,7 @@ public class Item {
 
     public int quality;
 
-    public Item(String name, int sell_in, int quality) {
+    public Rose(String name, int sell_in, int quality) {
         this.name = name;
         this.sell_in = sell_in;
         this.quality = quality;
